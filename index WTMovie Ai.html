@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WTMovie AI">
+<title>WTMovie AI — Free iPhone Studio & Translator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap');
+:root{--bg:#090a0d;--panel:#12151b;--panel2:#191d25;--line:#292e38;--gold:#dfbd78;--muted:#9ba1ad;--white:#f4f1e9;--green:#83d2a2;--red:#ef9b91}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,'Noto Sans Khmer',sans-serif}
+header{position:sticky;top:0;z-index:5;background:#0c0e12ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;gap:11px}
+.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#f1d99f,#987039);display:grid;place-items:center;color:#17130c;font-weight:900}
+.brand h1{font-size:15px;margin:0}
+.brand small{font-size:9px;color:var(--gold);letter-spacing:1.6px}
+.free{margin-left:auto;border:1px solid #54452b;border-radius:30px;padding:6px 9px;color:#f0d69e;font-size:9px}
+.wrap{max-width:880px;margin:auto;padding:17px 14px 90px}
+.hero{padding:15px 3px 20px}
+.eyebrow{font-size:10px;color:var(--gold);letter-spacing:2px;font-weight:700}
+.hero h2{font-size:27px;line-height:1.35;margin:8px 0}
+.hero p,.muted{font-size:11px;color:var(--muted);line-height:1.8}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:15px;margin-bottom:13px}
+.card h3{font-size:14px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tool{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px 10px;text-align:left;color:var(--white);min-height:78px;display:flex;align-items:center;gap:10px}
+.tool .ico{font-size:21px;color:var(--gold);width:27px;text-align:center}
+.tool b{display:block;font-size:11px}
+.tool small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
+button,input,textarea,select{font:inherit}
+button{background:#1b1f26;color:var(--white);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:11px;cursor:pointer}
+button.primary{background:linear-gradient(135deg,#efd69b,#bd914d);color:#18130b;border:0;font-weight:800}
+button:disabled{opacity:.4;cursor:not-allowed}
+textarea,input[type=text],input[type=range],select{width:100%;background:#0b0d11;border:1px solid var(--line);border-radius:9px;color:var(--white);padding:12px;font-size:13px;outline:none}
+textarea:focus,input[type=text]:focus,select:focus{border-color:var(--gold)}
+input[type=range]{padding:6px 0;background:transparent;border:0}
+textarea{min-height:130px;line-height:1.8;resize:vertical}
+label{font-size:11px;color:#c8cbd1;display:block;margin:12px 0 7px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.row>*{flex:1;min-width:110px}
+.status{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:11px}
+.status:last-child{border:0}
+.ok{color:var(--green)}.warn{color:var(--gold)}.err{color:var(--red)}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0a0c10;border:1px solid var(--line);border-radius:9px;padding:12px;font:12px/1.8 Inter,'Noto Sans Khmer',sans-serif;color:#e1e1e1;min-height:55px}
+.note{border-left:3px solid var(--gold);padding:10px 12px;background:#19170f;color:#d5c59f;font-size:10px;line-height:1.8;border-radius:0 8px 8px 0}
+.section-title{font-size:13px;margin:20px 2px 10px;color:var(--gold)}
+.hidden{display:none!important}
+video{width:100%;max-height:280px;background:#050505;border-radius:10px;margin-top:10px}
+.project{padding:10px;border:1px solid var(--line);border-radius:9px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px}
+.project button{padding:7px}
+.stats{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.status-bar{margin-top:8px;font-size:11px;color:var(--gold);min-height:16px}
+footer{text-align:center;color:#69717e;font-size:9px;padding:20px}
+@media(min-width:680px){
+  .wrap{padding:25px}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .hero h2{font-size:34px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">WT</div>
+  <div class="brand">
+    <h1>WTMovie AI</h1>
+    <small>FREE IPHONE STUDIO & TRANSLATOR</small>
+  </div>
+  <span class="free">100% FREE · ALL-IN-ONE</span>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">DARK PREMIUM · KHMER CREATOR</div>
+    <h2>Movie Story & Translator Studio <span style="color:var(--gold)">✦</span></h2>
+    <p>បកប្រែរឿង · រៀបចំស្គ្រីប · សម្លេងអាន · Subtitle · វីដេអូ · Export</p>
+  </section>
+
+  <section class="card">
+    <h3>① ស្ថានភាព iPhone</h3>
+    <div class="status"><span>Browser</span><b id="browser">ពិនិត្យ…</b></div>
+    <div class="status"><span>Text-to-Speech</span><b id="tts">ពិនិត្យ…</b></div>
+    <div class="status"><span>Khmer Voice</span><b id="khmer" class="warn">ពិនិត្យ…</b></div>
+    <div class="status"><span>Local Save</span><b class="ok">អាចរក្សាទុកក្នុង Browser</b></div>
+    <button id="check">ពិនិត្យម្ដងទៀត</button>
+  </section>
+
+  <div class="section-title">② ឧបករណ៍បង្កើតមាតិកា</div>
+  <div class="grid">
+    <button class="tool" data-target="translatorCard"><span class="ico">文</span><span><b>Story Translator</b><small>បកប្រែរឿងស្វ័យប្រវត្តិ</small></span></button>
+    <button class="tool" data-mode="outline"><span class="ico">▤</span><span><b>Story Organizer</b><small>រៀបចំរឿងជាផ្នែកៗ</small></span></button>
+    <button class="tool" data-target="voiceCard"><span class="ico">♫</span><span><b>Khmer Voice</b><small>សាកស្ដាប់សម្លេងឧបករណ៍</small></span></button>
+    <button class="tool" data-mode="subtitle"><span class="ico">▣</span><span><b>Subtitle Studio</b><small>បង្កើតឯកសារ SRT</small></span></button>
+    <button class="tool" data-target="videoCard"><span class="ico">▶</span><span><b>Video Preview</b><small>បើកវីដេអូក្នុង iPhone</small></span></button>
+    <button class="tool" data-target="projectsCard"><span class="ico">⇩</span><span><b>Saved & Export</b><small>គម្រោង & Backup</small></span></button>
+  </div>
+
+  <!-- STORY TRANSLATOR SECTION -->
+  <section class="card" id="translatorCard" style="margin-top:16px">
+    <h3>③ Story Translator (បកប្រែរឿងដោយឥតគិតថ្លៃ)</h3>
+    <div class="row">
+      <div>
+        <label for="srcLang">ភាសាដើម (Source)</label>
+        <select id="srcLang">
+          <option value="auto">ស្វ័យប្រវត្តិ (Auto Detect)</option>
+          <option value="en">អង់គ្លេស (English)</option>
+          <option value="zh-CN">ចិន (Chinese)</option>
+          <option value="th">ថៃ (Thai)</option>
+          <option value="ko">កូរ៉េ (Korean)</option>
+          <option value="ja">ជប៉ុន (Japanese)</option>
+          <option value="vi">វៀតណាម (Vietnamese)</option>
+          <option value="km">ខ្មែរ (Khmer)</option>
+        </select>
+      </div>
+      <div>
+        <label for="dstLang">ភាសាបកប្រែ (Target)</label>
+        <select id="dstLang">
+          <option value="km" selected>ខ្មែរ (Khmer)</option>
+          <option value="en">អង់គ្លេស (English)</option>
+          <option value="zh-CN">ចិន (Chinese)</option>
+          <option value="th">ថៃ (Thai)</option>
+          <option value="ko">កូរ៉េ (Korean)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <label for="trSource">អត្ថបទដើមសម្រាប់បកប្រែ</label>
+        <textarea id="trSource" placeholder="ផាសអត្ថបទរឿង ឬស្គ្រីបភាសាបរទេសនៅទីនេះ…"></textarea>
+        <div class="stats">
+          <span id="trSrcCount">0 តួអក្សរ</span>
+          <button id="trClearSrc" style="padding:4px 8px">សម្អាត</button>
+        </div>
+      </div>
+      <div>
+        <label for="trTarget">លទ្ធផលបកប្រែ (អាចកែសម្រួលបាន)</label>
+        <textarea id="trTarget" placeholder="លទ្ធផលបកប្រែនឹងបង្ហាញនៅទីនេះ…"></textarea>
+        <div class="stats">
+          <span id="trDstCount">0 តួអក្សរ</span>
+          <button id="sendToWorkspace" style="padding:4px 8px;border-color:var(--gold);color:var(--gold)">បញ្ជូនទៅ Script Workspace →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar" id="trStatus"></div>
+    <div class="row">
+      <button class="primary" id="trRunBtn">🌐 បកប្រែឥឡូវនេះ</button>
+      <button id="trStopBtn">■ ផ្អាក</button>
+      <button id="trCopyBtn">📋 ចម្លងលទ្ធផល</button>
+      <button id="trSrtBtn">⬇ ទាញយក SRT</button>
+    </div>
+  </section>
+
+  <!-- SCRIPT WORKSPACE -->
+  <section class="card" id="workspace">
+    <h3>④ Script Workspace</h3>
+    <label for="projectName">ឈ្មោះគម្រោង</label>
+    <input id="projectName" type="text" placeholder="ឧ. រឿងចិន កើតជាថ្មី ភាគទី១">
+    <label for="script">អត្ថបទរឿង / Script</label>
+    <textarea id="script" placeholder="បញ្ចូលអត្ថបទរឿង ឬស្គ្រីបរបស់អ្នកនៅទីនេះ…"></textarea>
+    <div class="stats">
+      <span id="charCount">តួអក្សរ៖ 0</span>
+      <span id="readEst">ប៉ាន់ស្មានពេលវេលាអាន៖ ~0 វិនាទី</span>
+    </div>
+
+    <label for="mode">ជ្រើសរើសមុខងារ</label>
+    <select id="mode">
+      <option value="outline">រៀបចំរឿងជាផ្នែកៗ (Offline)</option>
+      <option value="voice">បញ្ជូនទៅ Voice Studio</option>
+      <option value="subtitle">បង្កើត Subtitle SRT</option>
+    </select>
+
+    <div class="row">
+      <button class="primary" id="process">ដំណើរការ</button>
+      <button id="save">រក្សាទុកគម្រោង</button>
+      <button id="clear">សម្អាត</button>
+    </div>
+
+    <label>លទ្ធផល</label>
+    <pre id="result">លទ្ធផលនឹងបង្ហាញនៅទីនេះ។</pre>
+    <div class="row">
+      <button id="copy">ចម្លងអត្ថបទ</button>
+      <button id="downloadTxt">ទាញយក TXT</button>
+      <button id="downloadSrt">ទាញយក SRT</button>
+    </div>
+  </section>
+
+  <!-- KHMER VOICE STUDIO -->
+  <section class="card" id="voiceCard">
+    <h3>⑤ Khmer Voice Studio</h3>
+    <label for="voiceText">អត្ថបទសម្រាប់អាន</label>
+    <textarea id="voiceText" placeholder="សរសេរអត្ថបទដែលចង់ឱ្យ iPhone អាន…"></textarea>
+    <label for="voiceSelect">ជ្រើសរើសសម្លេងក្នុងឧបករណ៍</label>
+    <select id="voiceSelect"><option value="">Auto / Default Voice</option></select>
+
+    <div class="row">
+      <div>
+        <label for="rateRange">ល្បឿនអាន៖ <b id="rateVal">1.0x</b></label>
+        <input id="rateRange" type="range" min="0.5" max="1.6" step="0.1" value="1.0">
+      </div>
+      <div>
+        <label for="pitchRange">កម្ពស់សម្លេង៖ <b id="pitchVal">1.0</b></label>
+        <input id="pitchRange" type="range" min="0.7" max="1.4" step="0.1" value="1.0">
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="primary" id="speak">▶ សាកស្ដាប់</button>
+      <button id="stop">■ បញ្ឈប់</button>
+    </div>
+    <p class="muted">សម្លេងអាស្រ័យលើភាសា និង Voice ដែលមានក្នុង iPhone។ ប្រសិនបើមិនមាន Khmer Voice សូមពិនិត្យ Settings → Accessibility → Spoken Content → Voices។</p>
+  </section>
+
+  <!-- VIDEO UPLOAD & PREVIEW -->
+  <section class="card" id="videoCard">
+    <h3>⑥ Video Upload & Preview</h3>
+    <label for="file">ជ្រើសរើសវីដេអូពី iPhone</label>
+    <input id="file" type="file" accept="video/*" style="width:100%;font-size:11px;color:var(--muted)">
+    <video id="video" controls playsinline class="hidden"></video>
+    <p class="muted">វីដេអូបើកក្នុង Browser ប៉ុណ្ណោះ។ វាមិនត្រូវបាន Upload ទៅ Server ទេ។</p>
+  </section>
+
+  <!-- SAVED PROJECTS -->
+  <section class="card" id="projectsCard">
+    <h3>⑦ គម្រោងដែលបានរក្សាទុក</h3>
+    <div id="projects" class="muted">មិនទាន់មានគម្រោងទេ។</div>
+    <div class="row">
+      <button id="backup">Export Backup JSON</button>
+      <button id="importBtn">Import JSON</button>
+      <button id="deleteAll">លុបគម្រោងទាំងអស់</button>
+    </div>
+    <input id="importFile" type="file" accept="application/json,.json" class="hidden">
+  </section>
+
+  <div class="note">សេចក្ដីជូនដំណឹង៖ កំណែនេះរួមបញ្ចូលទាំង Story Translator, Script Workspace, Khmer Voice Studio, Subtitle SRT និង Video Preview នៅក្នុងឯកសារតែមួយ ដោយប្រើប្រាស់ 100% ឥតគិតថ្លៃ។</div>
+  <footer>© 2026 WTMovie AI · FREE ALL-IN-ONE STUDIO</footer>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+let voices=[];let videoURL=null;let trAbort=false;
+
+function check(){
+  const ua=navigator.userAgent;
+  $('browser').textContent=/iPhone|iPad|iPod/.test(ua)?'Safari / iOS':'Browser';
+  $('tts').textContent=('speechSynthesis'in window)?'មាន Browser TTS':'មិនគាំទ្រ TTS';
+  $('tts').className=('speechSynthesis'in window)?'ok':'warn';
+  voices=window.speechSynthesis?speechSynthesis.getVoices():[];
+  const kh=voices.filter(v=>/km|khm|cambodian/i.test(v.lang+' '+v.name));
+  $('khmer').textContent=kh.length?kh.map(v=>v.name).join(', '):'មិនឃើញ Khmer Voice';
+  $('khmer').className=kh.length?'ok':'warn';
+  fillVoices();
+}
+
+function fillVoices(){
+  const s=$('voiceSelect'),old=s.value;
+  s.innerHTML='<option value="">Auto / Default Voice</option>';
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i;o.textContent=v.name+' ('+v.lang+')';
+    s.appendChild(o);
+  });
+  s.value=old;
+}
+
+if(window.speechSynthesis){
+  speechSynthesis.onvoiceschanged=()=>{voices=speechSynthesis.getVoices();fillVoices();};
+}
+$('check').onclick=check;
+check();
+
+// Navigation shortcuts
+document.querySelectorAll('.tool').forEach(b=>{
+  b.onclick=()=>{
+    if(b.dataset.target){
+      $(b.dataset.target).scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+    if(b.dataset.mode){
+      $('mode').value=b.dataset.mode;
+      $('workspace').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  };
+});
+
+// Shared SRT helper
+function makeSrt(t){
+  const chunks=t.split(/(?<=[.!?។
+])\s+/).map(x=>x.trim()).filter(Boolean);
+  let sec=0,out=[];
+  const stamp=n=>{
+    const h=String(Math.floor(n/3600)).padStart(2,'0');
+    const m=String(Math.floor(n%3600/60)).padStart(2,'0');
+    const s=String(Math.floor(n%60)).padStart(2,'0');
+    return `${h}:${m}:${s},000`;
+  };
+  chunks.forEach((x,i)=>{
+    const dur=Math.max(3,Math.ceil(x.length/14));
+    out.push(`${i+1}
+${stamp(sec)} --> ${stamp(sec+dur)}
+${x}`);
+    sec+=dur;
+  });
+  return out.join('
+
+');
+}
+
+function download(name,content,type='text/plain;charset=utf-8'){
+  const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function getSafeName(ext){
+  const raw=($('projectName').value.trim()||'WTMovie-result').replace(/[\/:*?"<>|]+/g,'-');
+  return `${raw}.${ext}`;
+}
+
+// --- STORY TRANSLATOR LOGIC ---
+function updateTrCounts(){
+  $('trSrcCount').textContent=$('trSource').value.length.toLocaleString()+' តួអក្សរ';
+  $('trDstCount').textContent=$('trTarget').value.length.toLocaleString()+' តួអក្សរ';
+}
+$('trSource').addEventListener('input',updateTrCounts);
+$('trTarget').addEventListener('input',updateTrCounts);
+
+function splitChunks(text,maxLen=420){
+  const paras=text.split(/
++/).map(p=>p.trim()).filter(Boolean);
+  const chunks=[];
+  for(const p of paras){
+    if(p.length<=maxLen){chunks.push(p);}
+    else{
+      const parts=p.split(/(?<=[.!?។
+])\s+/);
+      let buf='';
+      for(const part of parts){
+        if((buf+' '+part).trim().length>maxLen&&buf){chunks.push(buf.trim());buf=part;}
+        else{buf=(buf+' '+part).trim();}
+      }
+      if(buf)chunks.push(buf.trim());
+    }
+  }
+  return chunks;
+}
+
+async function translateSegment(text,src,dst){
+  const fromCode=src==='auto'?'autodetect':src;
+  const langPair=`${fromCode}|${dst}`;
+  const url=`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(langPair)}`;
+  const res=await fetch(url);
+  if(!res.ok)throw new Error('Network error');
+  const data=await res.json();
+  const out=data?.responseData?.translatedText;
+  if(!out||/MYMEMORY WARNING/i.test(out))throw new Error('Limit');
+  return out;
+}
+
+$('trRunBtn').onclick=async()=>{
+  const raw=$('trSource').value.trim();
+  if(!raw)return alert('សូមបញ្ចូលអត្ថបទដើមជាមុន');
+  trAbort=false;
+  $('trRunBtn').disabled=true;
+  const src=$('srcLang').value,dst=$('dstLang').value;
+  const chunks=splitChunks(raw);
+  const results=[];
+  $('trTarget').value='';
+  $('trStatus').className='status-bar';
+
+  for(let i=0;i<chunks.length;i++){
+    if(trAbort){$('trStatus').textContent=`បានផ្អាកនៅផ្នែកទី ${i+1}/${chunks.length}`;break;}
+    $('trStatus').textContent=`កំពុងបកប្រែផ្នែកទី ${i+1} / ${chunks.length}…`;
+    try{
+      const tr=await translateSegment(chunks[i],src,dst);
+      results.push(tr);
+    }catch(e){
+      results.push(chunks[i]);
+    }
+    $('trTarget').value=results.join('
+
+');
+    updateTrCounts();
+  }
+  if(!trAbort){
+    $('trStatus').className='status-bar ok';
+    $('trStatus').textContent=`បកប្រែរួចរាល់ (${chunks.length} ផ្នែក)។`;
+  }
+  $('trRunBtn').disabled=false;
+};
+
+$('trStopBtn').onclick=()=>{trAbort=true;};
+$('trClearSrc').onclick=()=>{$('trSource').value='';updateTrCounts();};
+$('trCopyBtn').onclick=async()=>{
+  const t=$('trTarget').value;
+  if(!t.trim())return alert('មិនមានអត្ថបទដើម្បីចម្លងទេ');
+  try{await navigator.clipboard.writeText(t);alert('បានចម្លងលទ្ធផលបកប្រែ');}
+  catch(e){alert('សូមចុចជាប់លើអត្ថបទ ហើយ Copy');}
+};
+$('trSrtBtn').onclick=()=>{
+  const t=$('trTarget').value.trim();
+  if(!t)return alert('មិនមានអត្ថបទដើម្បីបង្កើត SRT ទេ');
+  download(getSafeName('srt'),makeSrt(t));
+};
+$('sendToWorkspace').onclick=()=>{
+  const t=$('trTarget').value.trim();
+  if(!t)return alert('មិនទាន់មានលទ្ធផលបកប្រែទេ');
+  $('script').value=t;
+  updateStats();
+  $('workspace').scrollIntoView({behavior:'smooth',block:'start'});
+};
+
+// --- SCRIPT WORKSPACE LOGIC ---
+function updateStats(){
+  const text=$('script').value.trim();
+  const len=text.length;
+  const sec=Math.ceil(len/12);
+  $('charCount').textContent='តួអក្សរ៖ '+len.toLocaleString();
+  const min=Math.floor(sec/60),rem=sec%60;
+  $('readEst').textContent='ប៉ាន់ស្មានពេលវេលាអាន៖ ~'+(min?min+' នាទី ':'')+rem+' វិនាទី';
+}
+$('script').addEventListener('input',updateStats);
+
+$('process').onclick=()=>{
+  const s=$('script').value.trim(),m=$('mode').value;
+  if(!s){alert('សូមបញ្ចូលអត្ថបទជាមុន');return;}
+  if(m==='voice'){
+    $('voiceText').value=s;
+    $('voiceCard').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  if(m==='subtitle'){
+    $('result').textContent=makeSrt(s);
+    return;
+  }
+  const paras=s.split(/
++/).map(x=>x.trim()).filter(Boolean);
+  const scenes=paras.length?paras:[s];
+  $('result').textContent='គ្រោងសម្រាយ / រៀបចំរឿង
+
+'+scenes.map((x,i)=>`ផ្នែក ${i+1}
+${x}`).join('
+
+');
+};
+
+$('rateRange').oninput=()=>$('rateVal').textContent=Number($('rateRange').value).toFixed(1)+'x';
+$('pitchRange').oninput=()=>$('pitchVal').textContent=Number($('pitchRange').value).toFixed(1);
+
+$('speak').onclick=()=>{
+  const t=$('voiceText').value.trim();
+  if(!t)return alert('សូមបញ្ចូលអត្ថបទ');
+  if(!window.speechSynthesis)return alert('Browser មិនគាំទ្រ TTS');
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(t);
+  const v=$('voiceSelect').value;
+  if(v!=='')u.voice=voices[Number(v)];
+  u.rate=Number($('rateRange').value)||1;
+  u.pitch=Number($('pitchRange').value)||1;
+  speechSynthesis.speak(u);
+};
+$('stop').onclick=()=>window.speechSynthesis?.cancel();
+
+$('clear').onclick=()=>{
+  $('script').value='';
+  $('result').textContent='លទ្ធផលនឹងបង្ហាញនៅទីនេះ។';
+  updateStats();
+};
+
+$('copy').onclick=async()=>{
+  try{await navigator.clipboard.writeText($('result').textContent);alert('បានចម្លងអត្ថបទ');}
+  catch(e){alert('សូមចុចជាប់លើអត្ថបទ ហើយ Copy');}
+};
+
+$('downloadTxt').onclick=()=>download(getSafeName('txt'),$('result').textContent);
+$('downloadSrt').onclick=()=>{
+  const current=$('result').textContent.trim();
+  const srtContent=/^\d+?
+\d{2}:\d{2}:\d{2},000 --> \d{2}:\d{2}:\d{2},000/m.test(current)
+    ? current
+    : makeSrt($('script').value.trim()||current);
+  download(getSafeName('srt'),srtContent);
+};
+
+$('file').onchange=e=>{
+  const f=e.target.files?.[0];
+  if(!f)return;
+  if(videoURL)URL.revokeObjectURL(videoURL);
+  videoURL=URL.createObjectURL(f);
+  $('video').src=videoURL;
+  $('video').classList.remove('hidden');
+};
+
+// --- LOCAL PROJECTS ---
+function getProjects(){
+  try{return JSON.parse(localStorage.getItem('wtmovie_projects')||'[]');}
+  catch(e){return [];}
+}
+
+function renderProjects(){
+  const p=getProjects(),el=$('projects');
+  if(!p.length){el.textContent='មិនទាន់មានគម្រោងទេ។';return;}
+  el.innerHTML='';
+  p.forEach((x,i)=>{
+    const d=document.createElement('div');d.className='project';
+    const span=document.createElement('span');
+    span.textContent=x.name+' · '+new Date(x.updated).toLocaleDateString();
+    const actions=document.createElement('span');
+    const open=document.createElement('button');
+    open.textContent='បើក';
+    open.onclick=()=>{
+      $('projectName').value=x.name;
+      $('trSource').value=x.trSource||'';
+      $('trTarget').value=x.trTarget||'';
+      $('script').value=x.script||'';
+      $('result').textContent=x.result||'លទ្ធផលនឹងបង្ហាញនៅទីនេះ។';
+      updateTrCounts();
+      updateStats();
+      $('translatorCard').scrollIntoView({behavior:'smooth'});
+    };
+    const del=document.createElement('button');
+    del.textContent='លុប';
+    del.onclick=()=>{
+      const a=getProjects();a.splice(i,1);
+      localStorage.setItem('wtmovie_projects',JSON.stringify(a));
+      renderProjects();
+    };
+    actions.append(open,del);
+    d.append(span,actions);
+    el.append(d);
+  });
+}
+
+$('save').onclick=()=>{
+  const name=$('projectName').value.trim()||'គម្រោងគ្មានឈ្មោះ';
+  const p=getProjects();
+  const item={
+    name,
+    trSource:$('trSource').value,
+    trTarget:$('trTarget').value,
+    script:$('script').value,
+    result:$('result').textContent,
+    updated:Date.now()
+  };
+  const i=p.findIndex(x=>x.name===name);
+  if(i>=0)p[i]=item;else p.unshift(item);
+  try{
+    localStorage.setItem('wtmovie_projects',JSON.stringify(p));
+    renderProjects();
+    alert('បានរក្សាទុកគម្រោងក្នុង Browser');
+  }catch(e){
+    alert('ទំហំផ្ទុកពេញ។ សូម Export Backup ហើយលុបគម្រោងចាស់។');
+  }
+};
+
+$('backup').onclick=()=>download('WTMovie-backup.json',JSON.stringify(getProjects(),null,2),'application/json');
+
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=e=>{
+  const f=e.target.files?.[0];
+  if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const imported=JSON.parse(r.result);
+      if(!Array.isArray(imported))return alert('ឯកសារ JSON មិនត្រឹមត្រូវ');
+      const current=getProjects();
+      imported.forEach(item=>{
+        if(!item||!item.name)return;
+        const idx=current.findIndex(x=>x.name===item.name);
+        if(idx>=0)current[idx]=item;
+        else current.unshift(item);
+      });
+      localStorage.setItem('wtmovie_projects',JSON.stringify(current));
+      renderProjects();
+      alert('បាន Import គម្រោងរួចរាល់');
+    }catch(err){
+      alert('មិនអាចអានឯកសារ JSON បានទេ');
+    }
+  };
+  r.readAsText(f);
+  e.target.value='';
+};
+
+$('deleteAll').onclick=()=>{
+  if(confirm('តើអ្នកប្រាកដថាចង់លុបគម្រោងទាំងអស់មែនទេ?')){
+    localStorage.removeItem('wtmovie_projects');
+    renderProjects();
+  }
+};
+
+renderProjects();
+updateTrCounts();
+updateStats();
+</script>
+</body>
+</html>
