@@ -21,17 +21,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      text-align: center;
+      padding: 20px;
     }
     .card {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 18px;
-      padding: 28px 22px;
+      padding: 24px 20px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      text-align: center;
     }
     .badge {
       display: inline-block;
@@ -41,24 +41,22 @@
       font-weight: 600;
       padding: 6px 12px;
       border-radius: 999px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
+      font-size: 24px;
+      margin-bottom: 8px;
     }
     p {
       color: #8b949e;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
     .btn {
-      display: inline-block;
       width: 100%;
       background: #238636;
       color: #ffffff;
-      text-decoration: none;
       font-weight: 600;
       font-size: 15px;
       padding: 13px 18px;
@@ -69,6 +67,52 @@
     .btn:active {
       opacity: 0.88;
     }
+    #workspace {
+      display: none;
+      margin-top: 18px;
+      text-align: left;
+      border-top: 1px solid #30363d;
+      padding-top: 16px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      background: #0d1117;
+      color: #f0f6fc;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-secondary {
+      flex: 1;
+      background: #21262d;
+      color: #f0f6fc;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-copy {
+      flex: 1;
+      background: #1f6feb;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -76,7 +120,29 @@
     <div class="badge">WTMovie AI • ចក្រវាលសម្រាយរឿង</div>
     <h1>WTMovie AI</h1>
     <p>វែបសាយសម្រាប់គ្រប់គ្រង និងរៀបចំការបកប្រែសម្រាយរឿង AI របស់អ្នកលើទូរស័ព្ទ។</p>
-    <button class="btn" onclick="alert('WTMovie AI កំពុងដំណើរការល្អ!')">ចាប់ផ្តើមប្រើប្រាស់</button>
+    <button class="btn" onclick="openWorkspace()">ចាប់ផ្តើមប្រើប្រាស់</button>
+
+    <div id="workspace">
+      <textarea id="scriptBox" placeholder="វាយ ឬ Paste អត្ថបទសម្រាយរឿង / សាប់ នៅទីនេះ..."></textarea>
+      <div class="actions">
+        <button class="btn-copy" onclick="copyText()">ចម្លងអត្ថបទ</button>
+        <button class="btn-secondary" onclick="clearText()">សម្អាត</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function openWorkspace() {
+      document.getElementById('workspace').style.display = 'block';
+    }
+    function copyText() {
+      const box = document.getElementById('scriptBox');
+      box.select();
+      navigator.clipboard.writeText(box.value);
+    }
+    function clearText() {
+      document.getElementById('scriptBox').value = '';
+    }
+  </script>
 </body>
 </html>
